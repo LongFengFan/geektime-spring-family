@@ -1,8 +1,11 @@
 package geektime.spring.data.mybatisdemo;
 
+import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
 import geektime.spring.data.mybatisdemo.mapper.CoffeeMapper;
 import geektime.spring.data.mybatisdemo.model.Coffee;
+import geektime.spring.data.mybatisdemo.query.PageRequest;
+import geektime.spring.data.mybatisdemo.query.PageResult;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.annotation.MapperScan;
@@ -44,6 +47,13 @@ public class MybatisDemoApplication implements ApplicationRunner {
 		List<Coffee> list = coffeeMapper.findAllWithParam(2, 3);
 		PageInfo page = new PageInfo(list);
 		log.info("PageInfo: {}", page);
+
+		List<Coffee> allWithParam = coffeeMapper.findAllWithParam(1, 3);
+		Page<Coffee> page2 = (Page<Coffee>) allWithParam;
+		PageResult pageResult = PageResult.convertByPage(page2);
+		log.info("Page: {}", pageResult);
+
+
 	}
 }
 

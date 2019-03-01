@@ -14,6 +14,6 @@ public interface CoffeeMapper {
     List<Coffee> findAllWithRowBounds(RowBounds rowBounds);
 
     @Select("select * from t_coffee order by id")
-    List<Coffee> findAllWithParam(@Param("pageNum") int pageNum,
+    List<Coffee> findAllWithParam(@Param("pageNumber") int pageNum,
                                   @Param("pageSize") int pageSize);
 }
